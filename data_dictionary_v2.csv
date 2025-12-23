@@ -1,0 +1,54 @@
+table,column,data_type,nullable,key,description,example
+data_raw_v2/jobs_transactions.csv,job_id,int,No,PK,Unique job transaction identifier.,1
+data_raw_v2/jobs_transactions.csv,worker_id,string,No,FK->dim_worker.worker_id,Freelancer identifier from source.,F102
+data_raw_v2/jobs_transactions.csv,work_date,date,No,FK->dim_date.full_date,Synthetic work date generated for time analysis.,2025-03-14
+data_raw_v2/jobs_transactions.csv,platform,string,Yes,,Platform name from source.,Upwork
+data_raw_v2/jobs_transactions.csv,client_region,string,Yes,,Client region from source.,Europe
+data_raw_v2/jobs_transactions.csv,project_type,string,Yes,,Project type from source.,Fixed
+data_raw_v2/jobs_transactions.csv,job_category,string,Yes,,Job category from source.,Web Development
+data_raw_v2/jobs_transactions.csv,payment_method,string,Yes,,Payment method from source.,PayPal
+data_raw_v2/jobs_transactions.csv,earnings_usd,numeric,Yes,,Metric from source dataset.,
+data_raw_v2/jobs_transactions.csv,job_completed,numeric,Yes,,Metric from source dataset.,
+data_raw_v2/jobs_transactions.csv,job_duration_days,numeric,Yes,,Metric from source dataset.,
+data_raw_v2/jobs_transactions.csv,hourly_rate,numeric,Yes,,Metric from source dataset.,
+data_raw_v2/jobs_transactions.csv,job_success_rate,numeric,Yes,,Metric from source dataset.,
+data_raw_v2/jobs_transactions.csv,client_rating,numeric,Yes,,Metric from source dataset.,
+data_raw_v2/jobs_transactions.csv,rehire_rate,numeric,Yes,,Metric from source dataset.,
+data_raw_v2/jobs_transactions.csv,marketing_spend,numeric,Yes,,Metric from source dataset.,
+data_raw_v2/workers.json,worker_id,string,No,PK,Freelancer identifier.,F102
+data_raw_v2/workers.json,experience_level,string,Yes,,Worker experience level.,Intermediate
+data_raw_v2/workers.json,primary_skill,string,Yes,,Primary skill/job category for worker.,Web Development
+data_raw_v2/platforms.csv,platform_id,int,No,PK,Surrogate key for platform.,1
+data_raw_v2/platforms.csv,platform_name,string,No,,Standardized platform name.,Upwork
+data_raw_v2/platforms.csv,category,string,Yes,,Platform category.,Freelancing
+data_raw_v2/platforms.csv,payment_cycle,string,Yes,,Most common payment method used as payout attribute.,PayPal
+data_raw_v2/regions.json,region_id,int,No,PK,Surrogate key for region.,1
+data_raw_v2/regions.json,region,string,No,,Standardized region label.,Europe
+data_raw_v2/regions.json,cost_of_living_index,float,Yes,,Synthetic cost-of-living index per region.,95.0
+data_raw_v2/projects.csv,project_id,int,No,PK,Surrogate key for project dimension.,1
+data_raw_v2/projects.csv,project_type,string,No,,Standardized project type.,Hourly
+data_raw_v2/projects.csv,job_category,string,No,,Standardized job category.,Design
+data_raw_v2/dim_date.csv,date_id,int,No,PK,Surrogate key formatted as YYYYMMDD.,20250314
+data_raw_v2/dim_date.csv,full_date,date,No,,Calendar date.,2025-03-14
+data_raw_v2/dim_date.csv,day_of_week,string,No,,Day name.,Friday
+data_raw_v2/dim_date.csv,is_weekend,int(0/1),No,,Weekend flag.,0
+data_raw_v2/dim_date.csv,is_holiday,int(0/1),No,,Demo holiday flag.,0
+data_raw_v2/dim_date.csv,month_name,string,No,,Month name.,March
+data_raw_v2/dim_date.csv,month_number,int,No,,Month number.,3
+data_raw_v2/dim_date.csv,quarter,int,No,,Quarter number.,1
+data_raw_v2/dim_date.csv,year,int,No,,Year.,2025
+data_cleaned_v2/fact_job_earnings.csv,job_id,int,No,DK,Degenerate key for traceability.,1
+data_cleaned_v2/fact_job_earnings.csv,worker_id,string,No,FK->dim_worker.worker_id,Worker business key.,F102
+data_cleaned_v2/fact_job_earnings.csv,platform_id,int,Yes,FK->dim_platform.platform_id,Platform surrogate key.,2
+data_cleaned_v2/fact_job_earnings.csv,region_id,int,Yes,FK->dim_region.region_id,Region surrogate key.,1
+data_cleaned_v2/fact_job_earnings.csv,project_id,int,Yes,FK->dim_project.project_id,Project surrogate key.,3
+data_cleaned_v2/fact_job_earnings.csv,date_id,int,No,FK->dim_date.date_id,Date surrogate key YYYYMMDD.,20250314
+data_cleaned_v2/fact_job_earnings.csv,earnings_usd,numeric,Yes,,Earnings in USD.,
+data_cleaned_v2/fact_job_earnings.csv,job_completed,numeric,Yes,,Number of completed jobs for the record.,
+data_cleaned_v2/fact_job_earnings.csv,job_duration_days,numeric,Yes,,Job duration in days.,
+data_cleaned_v2/fact_job_earnings.csv,hourly_rate,numeric,Yes,,Hourly rate in USD.,
+data_cleaned_v2/fact_job_earnings.csv,job_success_rate,numeric,Yes,,Job success rate from source.,
+data_cleaned_v2/fact_job_earnings.csv,client_rating,numeric,Yes,,Client rating from source.,
+data_cleaned_v2/fact_job_earnings.csv,rehire_rate,numeric,Yes,,Rehire rate from source.,
+data_cleaned_v2/fact_job_earnings.csv,marketing_spend,numeric,Yes,,Marketing spend from source.,
+data_cleaned_v2/fact_job_earnings.csv,is_gap_day,numeric,Yes,,"Flag 1 if earnings are zero/missing or job_completed is 0, else 0.",

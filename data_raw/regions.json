@@ -1,0 +1,37 @@
+[
+    {
+        "region_id": 1,
+        "region": "Asia",
+        "cost_of_living_index": 112.0
+    },
+    {
+        "region_id": 2,
+        "region": "Australia",
+        "cost_of_living_index": 120.0
+    },
+    {
+        "region_id": 3,
+        "region": "Uk",
+        "cost_of_living_index": 102.0
+    },
+    {
+        "region_id": 4,
+        "region": "Europe",
+        "cost_of_living_index": 109.0
+    },
+    {
+        "region_id": 5,
+        "region": "Usa",
+        "cost_of_living_index": 97.0
+    },
+    {
+        "region_id": 6,
+        "region": "Middle East",
+        "cost_of_living_index": 128.0
+    },
+    {
+        "region_id": 7,
+        "region": "Canada",
+        "cost_of_living_index": 124.0
+    }
+]
