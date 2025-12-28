@@ -99,6 +99,12 @@ The-Flexi-Income-Intelligence-Suite/
 ├── etl/                           # ETL pipeline code
 │   └── etl_pipeline.ipynb         # Main ETL notebook
 │
+├── database/                      # SQLite database implementation
+│   ├── schema.sql                 # Database DDL (tables, indexes, views)
+│   ├── load_data.py               # Data loading script
+│   ├── README.md                  # Database documentation & ER diagram
+│   └── freelance_earnings.db      # SQLite database (generated)
+│
 ├── tests/                         # Test suite
 │   ├── __init__.py                # Package initializer
 │   ├── test_data_quality.py       # Data quality tests
@@ -156,9 +162,16 @@ The-Flexi-Income-Intelligence-Suite/
    ```
 
 5. **Open and run the ETL pipeline**
+
    - Navigate to `etl/etl_pipeline.ipynb`
    - Run all cells sequentially (Cell → Run All)
    - Cleaned data will be generated in `data_cleaned/`
+
+6. **Load data into SQLite database** (optional but recommended)
+   ```bash
+   python database/load_data.py
+   ```
+   This creates a SQLite database with proper constraints, indexes, and views for efficient querying.
 
 ## Usage
 
@@ -170,6 +183,33 @@ The-Flexi-Income-Intelligence-Suite/
    - Apply data cleaning transformations
    - Generate star schema tables in `data_cleaned/`
 3. Review the output tables for analysis
+
+### Using the Database
+
+After loading data into SQLite:
+
+```bash
+# Connect to database
+sqlite3 database/freelance_earnings.db
+
+# Example queries
+SELECT * FROM vw_platform_summary;
+SELECT * FROM vw_worker_performance LIMIT 10;
+```
+
+Or from Python:
+
+```python
+import sqlite3
+import pandas as pd
+
+conn = sqlite3.connect('database/freelance_earnings.db')
+df = pd.read_sql_query("SELECT * FROM vw_platform_summary", conn)
+print(df)
+conn.close()
+```
+
+See [database/README.md](database/README.md) for complete database documentation, ER diagram, and query examples.
 
 ### Data Dictionary
 
@@ -386,10 +426,12 @@ Contributions are welcome! Here's how you can help:
 
 - Add visualization dashboards (Power BI, Tableau, Plotly)
 - Create additional analysis notebooks
-- Implement data quality tests
-- Add database loading scripts (PostgreSQL, MySQL)
+- Implement additional data quality tests
+- Migrate to PostgreSQL/MySQL for production use
 - Build predictive models for earnings forecasting
 - Add support for additional freelance platforms
+- Implement Slowly Changing Dimensions (SCD Type 2)
+- Create REST API for database access
 - Improve documentation and examples
 - Fix bugs or optimize performance
 
@@ -417,11 +459,13 @@ Contributions are welcome! Here's how you can help:
 - [ ] Automated data ingestion from APIs
 - [ ] Real-time dashboard with Power BI/Tableau
 - [ ] Machine learning models for earnings prediction
-- [ ] PostgreSQL/MySQL database integration
+- [ ] Migrate to PostgreSQL/MySQL for production scale
+- [ ] Implement Slowly Changing Dimensions (SCD Type 2) for history tracking
 - [ ] Docker containerization
 - [ ] REST API for data access
 - [ ] CI/CD pipeline for ETL automation
 - [ ] Automated email alerts for data quality issues
+- [ ] Incremental data loading strategy
 
 ## License
 

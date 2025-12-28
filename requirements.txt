@@ -4,3 +4,4 @@ openpyxl
 jupyter
 pytest
 pytest-cov
+sqlite3
