@@ -8,12 +8,14 @@ The Flexi Income Intelligence Suite enables deep analysis of the gig economy by 
 
 ### Key Features
 
-- **Automated ETL Pipeline**: Jupyter notebook-based pipeline for data extraction, cleaning, and transformation
-- **Star Schema Design**: Optimized dimensional model with fact and dimension tables
-- **Data Quality Management**: Handles duplicates, missing values, text standardization, and referential integrity
-- **Comprehensive Metrics**: Tracks earnings, job completion rates, client ratings, marketing spend, and more
-- **Multi-Platform Support**: Aggregates data from 5+ freelance platforms
-- **Time Series Ready**: Full date dimension with weekends, holidays, and quarters
+- **Automated ETL Pipeline**: 51-cell Jupyter notebook with data extraction, cleaning, transformation, and validation
+- **Star Schema Design**: Optimized dimensional model with 1 fact table and 5 dimension tables, fully normalized
+- **Data Quality Management**: Handles duplicates, missing values, text standardization, referential integrity, and gap day flagging
+- **Comprehensive Metrics**: Tracks earnings, job completion rates, client ratings, marketing spend, success rates, and rehire rates
+- **Multi-Platform Support**: Aggregates data from 5+ freelance platforms (Upwork, Fiverr, Freelancer, Toptal, PeoplePerHour)
+- **Time Series Ready**: Full date dimension with weekends, holidays, quarters, year, and month attributes
+- **SQLite Database**: Production-ready star schema with constraints, indexes, and predefined views
+- **Comprehensive Testing**: Unit tests for ETL functions and data quality validation
 
 ### Use Cases
 
@@ -97,11 +99,11 @@ The-Flexi-Income-Intelligence-Suite/
 │   └── dim_date.csv               # Date dimension
 │
 ├── etl/                           # ETL pipeline code
-│   └── etl_pipeline.ipynb         # Main ETL notebook
+│   └── etl_pipeline.ipynb         # Main ETL notebook (51 cells, ~500 lines)
 │
 ├── database/                      # SQLite database implementation
-│   ├── schema.sql                 # Database DDL (tables, indexes, views)
-│   ├── load_data.py               # Data loading script
+│   ├── schema.sql                 # Database DDL (6 tables, 20+ indexes, FK constraints)
+│   ├── load_data.py               # Data loading script (330 lines)
 │   ├── README.md                  # Database documentation & ER diagram
 │   └── freelance_earnings.db      # SQLite database (generated)
 │
@@ -111,11 +113,19 @@ The-Flexi-Income-Intelligence-Suite/
 │   └── test_etl_functions.py      # ETL unit tests
 │
 ├── scripts/                       # Utility scripts
-│   └── validate_data.py           # Data validation script
+│   └── validate_data.py           # Data validation script (292 lines)
 │
-├── data_dictionary_v2.csv         # Complete data dictionary
+├── Dashboards/                    # BI dashboards
+│   └── Flexi-income.pbix          # Power BI dashboard
+│
+├── Reports/                       # Analysis reports
+│   ├── Flexi_Income__measure_definitions.pdf
+│   ├── Flexi_Income__Use_case_Presentation Final V.pdf
+│   └── insights_flexi_income.pdf
+│
+├── data_dictionary_v2.csv         # Complete data dictionary (50+ columns)
 ├── data_dictionary_v2.xlsx        # Data dictionary (Excel format)
-├── requirements.txt               # Python dependencies
+├── requirements.txt               # Python dependencies (8 packages)
 ├── .gitignore                     # Git ignore rules
 └── README.md                      # This file
 ```
@@ -473,7 +483,10 @@ This project is available for educational and analytical purposes. Please add an
 
 ## Authors
 
-- **Original Author**: [loueydridii](https://github.com/loueydridii)
+- Louey Dridi
+- Dhie eddine Chedly
+- Mohamed Belgacem
+- Ahmed Rejeb
 
 ## Contact & Support
 
@@ -492,4 +505,6 @@ This project is available for educational and analytical purposes. Please add an
 
 ---
 
-_Last Updated: December 28, 2025_
+_Last Updated: January 4, 2026_
+
+_Project Development: December 2025 - January 2026_
