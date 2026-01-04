@@ -84,7 +84,7 @@ logs/
 *~
 
 # Data files (uncomment if you want to exclude large data files from version control)
-# data_raw/*.csv
+data_raw/*.csv
 # data_cleaned/*.csv
 # *.parquet
 
